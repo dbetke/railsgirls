@@ -15,8 +15,13 @@
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </div>
+
   <div class="field">
-    <%= f.label 'How succesfull do you think this idea might be?' %><br />
+    <%= f.label :tag_list, "Tags (separated by commas)" %><br />
+    <%= f.text_field :tag_list %><br />
+  </div>
+  <div class="field">
+    <%= f.label 'How succesful do you think this idea might be?' %><br />
     <%= f.label '1=least successful:10=Most likly to succeed' %><br />
     <%= f.text_field :range %>
   </div>

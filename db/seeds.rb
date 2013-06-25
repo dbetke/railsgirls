@@ -5,3 +5,23 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+500.times.each do |n|
+  idea = Idea.create(
+    :name => Faker::HipsterIpsum.words.join(' '),
+    :description => Faker::Lorem.paragraph,
+    :range => rand(0..10),
+    :completed => [true, false].sample
+  )
+  puts "#{n} of 500 - #{idea.name}"
+end
+
+2000.times.each do |n|
+  task = Task.create(
+    :name => Faker::HipsterIpsum.words.join(' '),
+    :notes => Faker::Lorem.paragraph,
+    :idea_id => Idea.order("random()").first.id,
+    :completed => [true, false].sample
+  )
+  puts "#{n} of 2000 - #{task.name}"
+end

@@ -30,4 +30,30 @@ describe "creating Factory instances" do
     end
   end
 
+  #associations#
+  describe "associations" do
+    subject { create(:idea) }
+    it { should have_many(:tasks) }
+  end
+
+  #scopes#
+  describe "scopes" do
+    let(:idea) { create(:idea) } 
+    
+    it "should return an Idea with the requested range" do
+      idea.update_attribute(:range, 8)
+      Idea.ranged(8).include?(idea).should be true
+    end
+    
+    it "should not raise an error if passed nil" do
+      lambda { Idea.ranged(nil) }.should_not raise_error  #to do error testing need to use lambda block
+    end
+
+    it "should not return an Idea with a different range" do
+      idea.update_attribute(:range, 8)
+      Idea.ranged(4).include?(idea).should be false
+    end
+ 
+ end
+
 end
