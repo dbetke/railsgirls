@@ -4,9 +4,9 @@ class IdeasController < ApplicationController
   def index
 
     if params[:tag]
-      @ideas = Idea.tagged_with(params[:tag])
+      @ideas = Idea.paginate(:page => params[:page]).tagged_with(params[:tag])
     else
-      @ideas = Idea.all
+      @ideas = Idea.paginate(:page => params[:page])
     end
 
     respond_to do |format|
